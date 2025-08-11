@@ -52,7 +52,7 @@ const quizItems = [
     url: "https://photoshop.com",
     language: "ar",
     imageText: "صفحة تسجيل دخول فوتوشوب\n(معاينة تعليمية)",
-    isPhishing: false,
+    isPhishing: true,
     explanation: "يستخدم HTTP بدلاً من HTTPS، والنطاق لا يبدو رسميًا. الأخطاء الإملائية شائعة في صفحات الاحتيال.",
   },
   {
