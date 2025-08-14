@@ -239,7 +239,6 @@
     <script>
         let selectedFiles = [];
         
-        // إعداد المدخلات
         const messageInput = document.getElementById('messageInput');
         const sendBtn = document.getElementById('sendBtn');
         const chatMessages = document.getElementById('chatMessages');
@@ -247,13 +246,11 @@
         const filePreview = document.getElementById('filePreview');
         const typingIndicator = document.getElementById('typingIndicator');
         
-        // تلقائي تغيير حجم النص
         messageInput.addEventListener('input', function() {
             this.style.height = 'auto';
             this.style.height = Math.min(this.scrollHeight, 100) + 'px';
         });
         
-        // إرسال بالضغط على Enter
         messageInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
@@ -261,10 +258,8 @@
             }
         });
         
-        // إرسال بالضغط على الزر
         sendBtn.addEventListener('click', sendMessage);
         
-        // معالجة الملفات
         fileInput.addEventListener('change', function(e) {
             const files = Array.from(e.target.files);
             files.forEach(file => {
@@ -307,19 +302,15 @@
             
             if (!message && selectedFiles.length === 0) return;
             
-            // إضافة رسالة المستخدم
             addMessage('user', message, selectedFiles);
             
-            // مسح المدخلات
             messageInput.value = '';
             messageInput.style.height = 'auto';
             selectedFiles = [];
             updateFilePreview();
             
-            // إظهار مؤشر الكتابة
             showTypingIndicator();
             
-            // محاكاة رد البوت
             setTimeout(() => {
                 hideTypingIndicator();
                 const response = generateBotResponse(message, contentType);
@@ -367,7 +358,6 @@
         }
         
         function generateBotResponse(message, contentType) {
-            // تحليل بسيط للمحتوى
             const phishingIndicators = [
                 'urgent', 'عاجل', 'فوري', 'click here', 'اضغط هنا', 'limited time', 'وقت محدود',
                 'verify account', 'تأكيد الحساب', 'suspended', 'معلق', 'winner', 'فائز',
@@ -465,7 +455,6 @@
             }
         }
         
-        // تمرير تلقائي للأسفل عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             scrollToBottom();
         });

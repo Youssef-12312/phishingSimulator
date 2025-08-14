@@ -339,7 +339,6 @@
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // معالجة نموذج الإبلاغ
         document.getElementById('reportForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -348,30 +347,25 @@
             const consent = document.getElementById('consentCheck').checked;
             
             if (threatType && description && consent) {
-                // إظهار رسالة النجاح
                 document.getElementById('reportSuccess').style.display = 'block';
                 
-                // مسح النموذج
                 this.reset();
                 
-                // التمرير إلى رسالة النجاح
                 document.getElementById('reportSuccess').scrollIntoView({ 
                     behavior: 'smooth', 
                     block: 'center' 
                 });
                 
-                // إخفاء الرسالة بعد 10 ثوان
                 setTimeout(() => {
                     document.getElementById('reportSuccess').style.display = 'none';
                 }, 10000);
             }
         });
         
-        // معالجة تحميل الملفات
         document.getElementById('evidenceFiles').addEventListener('change', function(e) {
             const files = e.target.files;
             const maxFiles = 5;
-            const maxSize = 10 * 1024 * 1024; // 10MB
+        
             
             if (files.length > maxFiles) {
                 alert(`يمكنك إرفاق حتى ${maxFiles} ملفات فقط`);
@@ -388,12 +382,10 @@
             }
         });
         
-        // تحديث مستوى الأولوية بناءً على نوع التهديد
         document.getElementById('threatType').addEventListener('change', function() {
             const impactLevel = document.getElementById('impactLevel');
             const value = this.value;
             
-            // تعيين مستوى افتراضي بناءً على نوع التهديد
             if (value === 'phishing-website' || value === 'fake-app') {
                 impactLevel.value = 'high';
             } else if (value === 'fake-email' || value === 'sms-scam') {
