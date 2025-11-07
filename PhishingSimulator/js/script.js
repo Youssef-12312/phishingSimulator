@@ -667,11 +667,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const cards = Array.from(document.querySelectorAll(".tips-grid .tip-card"));
   if (!cards.length) return;
 
-  // set initial offsets based on index
   cards.forEach((card, i) => {
-    // clear any inline style collisions
     card.classList.remove("in-from-right","in-from-left","fade-in");
-    // assign offset classes: first two from right, next two from left, last two fade
     if (i % 6 === 0 || i % 6 === 1) {
       card.classList.add("offset-right");
     } else if (i % 6 === 2 || i % 6 === 3) {
@@ -679,7 +676,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       card.classList.add("offset-scale");
     }
-    // small stagger classes for nicer sequence
     card.classList.add(`stagger-${i % 6}`);
   });
 
@@ -695,10 +691,8 @@ document.addEventListener("DOMContentLoaded", function () {
       const card = entry.target;
       const index = cards.indexOf(card);
 
-      // remove offset before applying in-class to allow transition to run
       if (card.classList.contains("offset-right")) {
         card.classList.remove("offset-right");
-        // force reflow to ensure transition triggers
         void card.offsetWidth;
         card.classList.add("in-from-right");
       } else if (card.classList.contains("offset-left")) {
@@ -711,11 +705,10 @@ document.addEventListener("DOMContentLoaded", function () {
         card.classList.add("fade-in");
       }
 
-      // optional: unobserve after appear so it doesn't re-trigger
       obs.unobserve(card);
     });
   }, observerOptions);
 
-  // observe each card
+  
   cards.forEach(c => io.observe(c));
 });
