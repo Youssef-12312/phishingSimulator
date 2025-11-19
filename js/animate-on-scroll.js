@@ -51,6 +51,21 @@
     applyObserver();
   }
 
-  // Expose for manual init if needed
   window.EoHAnimateOnScroll = { init: applyObserver };
 })();
+const cards = document.querySelectorAll('.tip-timeline');
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2 
+});
+
+cards.forEach(card => {
+  observer.observe(card);
+});
